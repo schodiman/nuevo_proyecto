@@ -1,29 +1,36 @@
 from auxiliares.version import version_actual
 from datos.asignaturas import asignaturas
+from negocio.negocio_menu import menu_principal, menu_asignaturas
+from negocio.negocio_asignaturas import listado_asignaturas, agregar_asignatura, modificar_asignatura
 
 
-def menu_principal():
+def programa_principal():
     print()
     print(f'Aplicación Gestión de Notas v.{version_actual}')
     print('===========================')
 
     while True:
-        print('[1] Gestión Asignaturas')
-        print('[2] Gestión Docentes')
-        print('[3] Gestión Estudiantes')
-        print('[4] Gestión Notas')
-        print('[0] Salir')
-        print()
-
+        menu_principal()
         opcion = input('Seleccione su opción: ')
+        print()
         if opcion == '1':
-            contador = 1
-            print()
-            print('Listado de Asignaturas')
-            for asignatura in asignaturas:
-                print(f'{contador} {asignatura}')
-                contador += 1
-
+            while True:
+                menu_asignaturas()
+                opcion_asignaturas = input('Seleccione su opción: ')
+                print()
+                if opcion_asignaturas == '1':
+                    listado_asignaturas()
+                elif opcion_asignaturas == '2':
+                    agregar_asignatura()
+                elif opcion_asignaturas == '3':
+                    modificar_asignatura()
+                elif opcion_asignaturas == '4':
+                    pass
+                elif opcion_asignaturas == '0':
+                    print('Volviendo al menú anterior...')
+                    break
+                else:
+                    print('Opción ingresada NO corresponde...')
         elif opcion == '2':
             print('Ud. ha seleccionado la opción 2')
         elif opcion == '3':
@@ -37,4 +44,4 @@ def menu_principal():
             print('Opción ingresada NO corresponde...')
 
 
-menu_principal()
+programa_principal()
